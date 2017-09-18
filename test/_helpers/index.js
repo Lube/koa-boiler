@@ -4,7 +4,6 @@ import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 import path from 'path'
 
-// Basically makes us able to "import stuff from 'some/source/folder'"
 appModulePath.addPath(path.join(__dirname, '/../../src'))
 chai.config.includeStack = true
 chai.use(sinonChai)

@@ -1,12 +1,7 @@
-/**
- * Files module ensures that we get a single server
- * per run. That means all tests share the same instance.
- *
- * It also ensures that tests do not run until the server is ready.
- */
+
 import agent from 'supertest'
 import http from 'http'
-import memoize from 'lodash/memoize'
+import memoize from 'ramda'
 import env from 'lib/env'
 
 import createServer from 'lib/createServer'
