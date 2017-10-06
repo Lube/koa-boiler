@@ -1,10 +1,11 @@
 import { addRespuesta, getRespuestas } from './repository'
 import logger from './../../lib/logger'
 import XLSX from 'xlsx'
-import { createReadStream, unlink } from 'fs'
+import { readFile, unlink } from 'fs'
 import { promisify } from 'util'
 
 const unlinkAsync = promisify(unlink)
+const readFileAsync = promisify(readFile)
 
 export async function recordRespuesta (respuesta) {
   try {
@@ -40,8 +41,7 @@ export async function crearPlanillaExportable (filename) {
     };
 
     await XLSX.writeFile(workbook, `${__dirname}/${filename}`);
-
-    return createReadStream(`${__dirname}/${filename}`);
+    return readFileAsync(`${__dirname}/${filename}`)
   } catch (e) {
     throw e
   }
